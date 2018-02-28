@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <meta charset="UTF-8"> 
+		 <title>STEROWNIK CO - USTAWIENIA</title>
+		 
+			<script>
+				function showAlert()
+				{
+					window.alert("Dane wysłane");
+				}
+				function showTimeInDiv()
+				{
+					var dzisiaj = new Date();
+					var dzien	= dzisiaj.getDate();
+					var miesiac	= dzisiaj.getMonth();
+					var rok 	= dzisiaj.getFullYear();
+					
+					var godzina = dzisiaj.getHours();
+					if(godzina < 10 ) godzina = "0" + godzina;
+					var minuta	 = dzisiaj.getMinutes();
+					if(minuta < 10 ) minuta = "0" + minuta;
+					var sekunda = dzisiaj.getSeconds();		
+					if(sekunda < 10 ) sekunda = "0" + sekunda;		
+					
+					document.getElementById("zegarek").innerHTML = "Dziś jest: <br />" + dzien + "-" + miesiac + "-" + rok + "  |  " + godzina + ":" + minuta + ":" + sekunda;
+					setTimeout( "showTimeInDiv()" , 1000 );
+					
+				}
+			</script>
+			
+			<style>
+			
+			body
+			{
+				background-color: #FCFCFC;
+			}
+		
+			#container
+			{
+				width: 70%;
+				margin-left: auto;
+				margin-right: auto;
+				font-family:Lucida Sans Unicode;
+			}
+			
+			#top_bar
+			{
+				background-color: #808080;	
+				text-align: center;
+				padding: 15px;
+				color: white;
+				border-radius: 5px;
+				font-weight: bold;
+			}
+			#left_bar
+			{	
+				margin-top:10px;
+				width: 19%;
+				float: left;
+				background-color: rgb(242, 243, 242);	
+				text-align: center;
+				
+				color: white;
+				border-radius: 5px;
+				height: 600px;
+				position: relative;
+				
+			}
+			.navi_button
+			{	
+				width: 95%;
+				background-color: #4CAF50;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				padding-right 10px;
+				text-align: center;
+				color: white;
+				font-weight: bold;
+				margin-top: 10px;
+				border-radius: 5px;
+				
+			}
+			.navi_button:hover
+			{	
+				
+				background-color: #5CCF70;			
+				
+			}
+			
+			#content
+			{
+				width: 80%;
+				background-color: rgb(242, 243, 242);
+				float: left;
+				margin-top:10px;
+				margin-left: 1%;
+				border-radius: 5px;
+				height: 600px;
+				margin-left: 10px;
+				
+				
+			}
+			input 
+			{
+				width:100%;
+				height: 60px;
+				
+				border: 2px solid black;
+				border-radius: 2px;
+				margin-top: 10px;
+			}
+			#config_form
+			{
+				width: 100%;
+				text-align: center;
+				
+			}
+		
+			.input_25per
+			{	
+				margin-top: 10px;
+				height: 60px;
+				width: 23%;
+				float: left;
+				display:table-cell;
+				vertical-align:middle;
+				top: 50%;
+			}
+			.input_75per
+			{	
+				width: 73%;	
+				float: left;		
+				
+			}
+			input[type="submit"]
+			{	
+				width:20%;
+				background-color: #4CAF50;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				padding-right 10px;
+				text-align: center;
+				color: white;
+				font-weight: bold;
+			}
+			
+			input[type="submit"]:hover
+			{	
+				background-color: #5CCF70;
+			}
+			#empty
+			{
+				width: 100%;
+				height: 10px;
+				float: left;
+			}
+			#down_bar
+			{	
+				clear: both;
+				height:50px;
+				text-align: center;
+				background-color: black;
+				color: white;
+				padding-top: 10px;
+				margin-top: 100px;
+				width: 100%;
+				border-radius: 5px;
+				
+				
+				
+			}
+			.podpis
+			{
+				font-size: 10px;
+			}
+			
+			#zegarek
+			{	
+				color: black;
+				position: absolute; bottom:0;
+				text-align center;
+				width: 100%;
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body onload="showTimeInDiv();">
+		
+		
+		<div id="container">
+			
+			<div id="top_bar">
+				<h1>STEROWNIK PIECA CO z interfejsem WiFi</h1>
+			</div>	
+
+			<div id="left_bar">
+				<a href="http://www.google.pl"><button class="navi_button">NASTAWY PID</button></a>
+				<a href="http://www.google.pl"><button class="navi_button">KONFIGURACJA</button></a>
+				<a href="http://www.google.pl"><button class="navi_button">ODCZYTY</button></a>
+				<a href="http://www.google.pl"><button class="navi_button">USTAWIENIA FABRYCZNE</button></a>
+				<div id="zegarek">xxx</div>
+				
+				
+			</div>	
+			
+			<div id="content">
+			
+				<div id="config_form"><h3>NASTAWY REGULATORA PID:</h3><br />
+				
+					<form action="strona.html">
+					
+						<div class="input_25per"><p>WSPÓŁCZYNNIK Kp: </p></div>						
+						<div class="input_75per"><input type="text" id="pfac" name="pfactor" placeholder="wprowadź wartość z przedziału od 1 do 100..."></div>
+						<div class="input_25per"><p>WSPÓŁCZYNNIK Ki: </p></div>						
+						<div class="input_75per"><input type="text" id="ifac" name="ifactor" placeholder="wprowadź wartość z przedziału od 1 do 100..."></div>
+						<div class="input_25per"><p>WSPÓŁCZYNNIK Kd: </p></div>						
+						<div class="input_75per"><input type="text" id="dfac" name="dfactor" placeholder="wprowadź wartość z przedziału od 1 do 100..."></div>
+											
+						<input type="submit" value="Ustaw" onclick="showAlert()">
+					</form>
+				</div>
+			</div>		
+			
+			<div id="empty"></div>
+			
+			<div id="down_bar">
+				<p class="podpis">Interfejs utworzony przez Rafała Tomczyka. Kopiowanie zabronione.<p><br />
+				
+			</div>			
+		
+		</div>
+		
+		
+	</body>
+</html>
